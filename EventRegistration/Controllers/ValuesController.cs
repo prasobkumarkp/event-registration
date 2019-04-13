@@ -23,7 +23,7 @@ namespace EventRegistration.Controllers
         [HttpGet]
         public ObjectResult Get()
         {
-           return Ok(_registrationRepository.GetAll());
+           return Ok(_registrationRepository.GetAll().ToList());
         }
 
         // GET api/<controller>/5

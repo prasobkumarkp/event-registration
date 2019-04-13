@@ -2,6 +2,7 @@
 using EventRegistration.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EventRegistration.Services.Sql
 {
@@ -21,14 +22,22 @@ namespace EventRegistration.Services.Sql
 
         public IEnumerable<Registration> GetAll()
         {
-            return _context.EventRegistrations;
+            var registrations = _context.Registration.ToList();
+            foreach (var registration in registrations)
+            {
+                registration.User = _context.User.FirstOrDefault(f => f.Id == registration.UserId);
+                registration.RegistrationDay =
+                    _context.RegistrationDay.Where(w => w.RegistrationId == registration.Id).ToList();
+            }
+            return registrations;
         }
 
         public bool Add(Registration item)
         {
             try
             {
-                _context.EventRegistrations.Add(item);
+                item.User.Gender = _context.Gender.SingleOrDefault(s => s.Value == item.User.Gender.Value);
+                _context.Registration.Add(item);
                 _context.SaveChanges();
                 return true;
             }

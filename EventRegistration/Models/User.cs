@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventRegistration.Models
@@ -10,8 +11,11 @@ namespace EventRegistration.Models
         [Required, DataType(DataType.Text), MaxLength(30)]
         public string Name { get; set; }
         [Required, DataType(DataType.EmailAddress), MaxLength(50)]
-        public string Email { get; set; }
+        public string EmailId { get; set; }
+        public int GenderId { get; set; }
+
         [Required]
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
+        public ICollection<Registration> Registration { get; set; }
     }
 }

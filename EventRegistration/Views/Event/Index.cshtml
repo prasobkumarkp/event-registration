@@ -18,10 +18,10 @@
                     <tr>
                         <th> @Html.DisplayNameFor(model => model.Id)</th>
                         <th> @Html.DisplayNameFor(model => model.User.Name)</th>
-                        <th> @Html.DisplayNameFor(model => model.User.Email)</th>
+                        <th> @Html.DisplayNameFor(model => model.User.EmailId)</th>
                         <th> @Html.DisplayNameFor(model => model.User.Gender)</th>
                         <th> @Html.DisplayNameFor(model => model.DateRegistered)</th>
-                        <th> @Html.DisplayNameFor(model => model.SelectedDays)</th>
+                        <th> @Html.DisplayNameFor(model => model.RegistrationDay)</th>
                         <th> @Html.DisplayNameFor(model => model.AdditionalRequest)</th>
                     </tr>
                     </thead>
@@ -31,10 +31,10 @@
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Id)</td>
                             <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
-                            <td>@Html.DisplayFor(modelItem => item.User.Gender)</td>
+                            <td>@Html.DisplayFor(modelItem => item.User.EmailId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.User.Gender.Value)</td>
                             <td>@Html.DisplayFor(modelItem => item.DateRegistered)</td>
-                            <td>@Html.DisplayFor(modelItem => item.SelectedDays)</td>
+                            <td>@Html.DisplayFor(modelItem => item.RegistrationDay)</td>
                             <td>@Html.DisplayFor(modelItem => item.AdditionalRequest)</td>
                         </tr>
                     }

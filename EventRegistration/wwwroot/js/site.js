@@ -6,10 +6,12 @@ var Load = () => {
     $.get("/api/values", function (data) {
         var html = "";
         for (var item in data) {
-	        html += "<tr><td>" + data[item].user.name + "</td>";
+            html += "<tr><td>" + data[item].user.name + "</td>";
             html += "<td>" + data[item].user.email + "</td>";
             html += "<td>" + data[item].user.gender + "</td></tr >";
         }
         $(".result").html(html);
+    }).fail(function () {
+        alert("Sorry! Something went wrong");
     });
 }

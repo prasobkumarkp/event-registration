@@ -15,7 +15,7 @@ namespace EventRegistration.Services.Sql
             _context = context;
             if ((this.GetAll()?.Count() <= 0))
             {
-                _context.Genders.AddRange(new List<Gender>
+                _context.Gender.AddRange(new List<Gender>
                 {
                     new Gender
                     {
@@ -39,7 +39,7 @@ namespace EventRegistration.Services.Sql
 
         public IEnumerable<Gender> GetAll()
         {
-            return _context.Genders;
+            return _context.Gender;
         }
 
         public bool Add(Gender item)

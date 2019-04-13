@@ -15,7 +15,7 @@ namespace EventRegistration.Services.Sql
             _context = context;
             if ((this.GetAll()?.Count() <= 0))
             {
-                _context.EventDays.AddRange(new List<Day>
+                _context.Day.AddRange(new List<Day>
                 {
                     new Day
                     {
@@ -42,7 +42,7 @@ namespace EventRegistration.Services.Sql
 
         public IEnumerable<Day> GetAll()
         {
-            return _context.EventDays;
+            return _context.Day;
         }
 
         public bool Add(Day item)

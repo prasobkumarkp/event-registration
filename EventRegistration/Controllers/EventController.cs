@@ -47,8 +47,14 @@ namespace EventRegistration.Controllers
                 return RedirectToAction("Add", addEventViewModel);
             }
             if (!ModelState.IsValid) return RedirectToAction("Add", addEventViewModel);
-            addEventViewModel.Registration.SelectedDays = addEventViewModel.EventDays
-                .Where(w => w.Selected).Select(s => new Day { Id = s.Id, Label = s.Label }).ToList();
+
+            addEventViewModel.Registration.RegistrationDay = addEventViewModel.EventDays
+                .Where(w => w.Selected).Select(s => new RegistrationDay
+                {
+                    EventDay = new Day { Id = s.Id, Label = s.Label }
+                }).ToList();
+
+
             _registrationRepository.Add(addEventViewModel.Registration);
 
             return RedirectToAction("Index");

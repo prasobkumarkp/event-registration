@@ -16,9 +16,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Registration.User.Email" class="control-label"></label>
-                    <input asp-for="Registration.User.Email" class="form-control" />
-                    <span asp-validation-for="Registration.User.Email" class="text-danger"></span>
+                    <label asp-for="Registration.User.EmailId" class="control-label"></label>
+                    <input asp-for="Registration.User.EmailId" class="form-control" />
+                    <span asp-validation-for="Registration.User.EmailId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -26,12 +26,12 @@
                     <div class="item">
                         @for (var i = 0; i < Model.Genders.Count; i++)
                         {
-                        <input type="radio" asp-for="Registration.User.Gender" name="Registration.User.Gender" value="@Model.Genders[i].Value" />
-                        <label asp-for="Registration.User.Gender">@Model.Genders[i].Label</label>
+                        <input type="radio" asp-for="Registration.User.Gender.Value" name="Registration.User.Gender.Value" value="@Model.Genders[i].Value" />
+                        <label asp-for="Registration.User.Gender.Value">@Model.Genders[i].Label</label>
                         <br />
                         }
                     </div>
-                    <span asp-validation-for="Registration.User.Gender" class="text-danger"></span>
+                    <span asp-validation-for="Registration.User.Gender.Value" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Registration.SelectedDays" class="control-label"></label>
+                    <label asp-for="Registration.Id" class="control-label"></label>
                     <div class="item">
                         @for (var i = 0; i < Model.EventDays.Count; i++)
                         {
@@ -52,7 +52,7 @@
                         <br />
                         }
                     </div>
-                    <span asp-validation-for="Registration.SelectedDays" class="text-danger"></span>
+                    <span asp-validation-for="Registration.Id" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">

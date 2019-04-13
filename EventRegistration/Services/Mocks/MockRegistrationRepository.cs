@@ -17,45 +17,45 @@ namespace EventRegistration.Services.Mocks
                     Id = 1,
                     User = new User
                     {
-                        Email = "Shirly@gmail.com",
-                        Gender = "F",
+                        EmailId = "Shirly@gmail.com",
+                        Gender = new Gender{ Label = "Female",Value = "F"},
                         Name = "Shirley Setia"
                     },
                     DateRegistered = new DateTime(2019,04,11),
                     AdditionalRequest = "Nothing",
-                    SelectedDays = new List<Day>
-                    {
-                        new Day
-                        {
-                            Id=1,
-                            Label = "Day 1"
-                        },
-                        new Day
-                        {
-                            Id=2,
-                            Label = "Day 2"
-                        }
-                    }
+                    //SelectedDays = new List<Day>
+                    //{
+                    //    new Day
+                    //    {
+                    //        Id=1,
+                    //        Label = "Day 1"
+                    //    },
+                    //    new Day
+                    //    {
+                    //        Id=2,
+                    //        Label = "Day 2"
+                    //    }
+                    //}
                 },
                 new Registration
                 {
                     Id = 2,
                     User = new User
                     {
-                        Email = "Shreya@gmail.com",
-                        Gender = "F",
+                        EmailId = "Shreya@gmail.com",
+                        Gender = new Gender{ Label = "Female",Value = "F"},
                         Name = "Shreya Ghoshal"
                     },
                     DateRegistered = new DateTime(2019,04,10),
                     AdditionalRequest = "Nothing",
-                    SelectedDays = new List<Day>
-                    {
-                        new Day
-                        {
-                            Id=1,
-                            Label = "Day 1"
-                        }
-                    }
+                    //SelectedDays = new List<Day>
+                    //{
+                    //    new Day
+                    //    {
+                    //        Id=1,
+                    //        Label = "Day 1"
+                    //    }
+                    //}
                 }
             };
         }
