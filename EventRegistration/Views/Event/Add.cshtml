@@ -1,0 +1,79 @@
+﻿@model AddEventViewModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="center-block">
+    <div class="row add-user">
+        <div class="col-md-12 box">
+            <form asp-action="Add">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Registration.User.Name" class="control-label"></label>
+                    <input asp-for="Registration.User.Name" class="form-control" />
+                    <span asp-validation-for="Registration.User.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration.User.Email" class="control-label"></label>
+                    <input asp-for="Registration.User.Email" class="form-control" />
+                    <span asp-validation-for="Registration.User.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration.User.Gender" class="control-label"></label>
+                    <div class="item">
+                        @for (var i = 0; i < Model.Genders.Count; i++)
+                        {
+                        <input type="radio" asp-for="Registration.User.Gender" name="Registration.User.Gender" value="@Model.Genders[i].Value" />
+                        <label asp-for="Registration.User.Gender">@Model.Genders[i].Label</label>
+                        <br />
+                        }
+                    </div>
+                    <span asp-validation-for="Registration.User.Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration.DateRegistered" class="control-label"></label>
+                    <input asp-for="Registration.DateRegistered" class="form-control" />
+                    <span asp-validation-for="Registration.DateRegistered" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration.SelectedDays" class="control-label"></label>
+                    <div class="item">
+                        @for (var i = 0; i < Model.EventDays.Count; i++)
+                        {
+                        <input type="checkbox" asp-for="@Model.EventDays[i].Selected" />
+                        <label asp-for="@Model.EventDays[i].Selected">@Model.EventDays[i].Label</label>
+                        <input type="hidden" asp-for="@Model.EventDays[i].Id" />
+                        <input type="hidden" asp-for="@Model.EventDays[i].Label" />
+                        <br />
+                        }
+                    </div>
+                    <span asp-validation-for="Registration.SelectedDays" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration.AdditionalRequest" class="control-label"></label>
+                    <TextArea asp-for="Registration.AdditionalRequest" class="form-control"></TextArea>
+                    <span asp-validation-for="Registration.AdditionalRequest" class="text-danger"></span>
+                </div>
+
+                <div class="form-group float-right">
+                    <input type="submit" value="Submit" class="btn btn-default btn-custom" />
+                </div>
+                <span  class="text-danger"> @Html.ValidationMessage("Error")</span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

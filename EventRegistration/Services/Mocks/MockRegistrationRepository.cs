@@ -1,0 +1,96 @@
+﻿using EventRegistration.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace EventRegistration.Services.Mocks
+{
+    public class MockRegistrationRepository : IRepository<Registration>
+    {
+        private List<Registration> _registrations;
+        public MockRegistrationRepository()
+        {
+            _registrations = new List<Registration>
+            {
+                new Registration
+                {
+                    Id = 1,
+                    User = new User
+                    {
+                        Email = "Shirly@gmail.com",
+                        Gender = "F",
+                        Name = "Shirley Setia"
+                    },
+                    DateRegistered = new DateTime(2019,04,11),
+                    AdditionalRequest = "Nothing",
+                    SelectedDays = new List<Day>
+                    {
+                        new Day
+                        {
+                            Id=1,
+                            Label = "Day 1"
+                        },
+                        new Day
+                        {
+                            Id=2,
+                            Label = "Day 2"
+                        }
+                    }
+                },
+                new Registration
+                {
+                    Id = 2,
+                    User = new User
+                    {
+                        Email = "Shreya@gmail.com",
+                        Gender = "F",
+                        Name = "Shreya Ghoshal"
+                    },
+                    DateRegistered = new DateTime(2019,04,10),
+                    AdditionalRequest = "Nothing",
+                    SelectedDays = new List<Day>
+                    {
+                        new Day
+                        {
+                            Id=1,
+                            Label = "Day 1"
+                        }
+                    }
+                }
+            };
+        }
+        public Registration Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Registration> GetAll()
+        {
+            return _registrations;
+        }
+
+        public bool Add(Registration item)
+        {
+            try
+            {
+                item.Id = GetAll().Max(m => m.Id) + 1;
+                _registrations.Add(item);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool Delete(Registration item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Edit(Registration item)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
