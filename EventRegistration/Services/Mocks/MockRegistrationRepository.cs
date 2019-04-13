@@ -23,20 +23,27 @@ namespace EventRegistration.Services.Mocks
                     },
                     DateRegistered = new DateTime(2019,04,11),
                     AdditionalRequest = "Nothing",
-                    //SelectedDays = new List<Day>
-                    //{
-                    //    new Day
-                    //    {
-                    //        Id=1,
-                    //        Label = "Day 1"
-                    //    },
-                    //    new Day
-                    //    {
-                    //        Id=2,
-                    //        Label = "Day 2"
-                    //    }
-                    //}
+                    RegistrationDay = new List<RegistrationDay>
+                    {
+                       new RegistrationDay
+                       {
+                           EventDay =  new Day
+                           {
+                               Id=1,
+                               Label = "Day 1"
+                           }
+                       },
+                       new RegistrationDay
+                       {
+                           EventDay =  new Day
+                           {
+                               Id=2,
+                               Label = "Day 2"
+                           }
+                       }
+                    }
                 },
+
                 new Registration
                 {
                     Id = 2,
@@ -48,14 +55,17 @@ namespace EventRegistration.Services.Mocks
                     },
                     DateRegistered = new DateTime(2019,04,10),
                     AdditionalRequest = "Nothing",
-                    //SelectedDays = new List<Day>
-                    //{
-                    //    new Day
-                    //    {
-                    //        Id=1,
-                    //        Label = "Day 1"
-                    //    }
-                    //}
+                    RegistrationDay = new List<RegistrationDay>
+                    {
+                        new RegistrationDay
+                        {
+                            EventDay =  new Day
+                            {
+                                Id=1,
+                                Label = "Day 1"
+                            }
+                        }
+                    }
                 }
             };
         }

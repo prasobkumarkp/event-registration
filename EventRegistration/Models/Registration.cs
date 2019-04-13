@@ -16,14 +16,19 @@ namespace EventRegistration.Models
 
         [DisplayName("No"), Editable(false), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [DisplayName("Date registered")]
         [Required, DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}"), DataType(DataType.Date)]
-        // [Range(typeof(DateTime), "01/01/2019", "06/30/2019",ConvertValueInInvariantCulture = true)]
+        //[Range(typeof(DateTime), "01/01/2019", "06/30/2019",ConvertValueInInvariantCulture = true)]
         public DateTime DateRegistered { get; set; }
-        [DataType(DataType.MultilineText)]
+
+        [DisplayName("Additional request"),DataType(DataType.MultilineText)]
         public string AdditionalRequest { get; set; }
+
         public int UserId { get; set; }
 
         public User User { get; set; }
+        [DisplayName("Selected Days")]
         public ICollection<RegistrationDay> RegistrationDay { get; set; }
     }
 }
