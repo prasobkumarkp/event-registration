@@ -22,24 +22,21 @@ namespace EventRegistration.Data
             modelBuilder.Entity<Day>(entity =>
             {
                 entity.Property(e => e.Label)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Gender>(entity =>
             {
                 entity.Property(e => e.Label)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                    .IsRequired();
 
                 entity.Property(e => e.Value)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Registration>(entity =>
             {
-                entity.Property(e => e.AdditionalRequest).HasMaxLength(10);
+                entity.Property(e => e.AdditionalRequest);
 
                 entity.Property(e => e.DateRegistered).HasColumnType("date");
 

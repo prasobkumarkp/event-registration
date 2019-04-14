@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace EventRegistration.Attributes
 {
-    public class DateRange:RangeAttribute
+    public class DateRange: ValidationAttribute
     {
-        public DateRange(double minimum, double maximum) : base(minimum, maximum)
-        {
-        }
+        public object FirstDate { get; set; }
+        public object SecondDate { get; set; }
 
-        public DateRange(int minimum, int maximum) : base(minimum, maximum)
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-        }
-
-        public DateRange(Type type, string minimum, string maximum) : base(type, minimum, maximum)
-        {
+            // your validation logic
+            if (Convert.ToDateTime(value) >= Convert.ToDateTime(FirstDate) && Convert.ToDateTime(value) <= Convert.ToDateTime(SecondDate))
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                return new ValidationResult("Date is not in given range.");
+            }
         }
     }
 }

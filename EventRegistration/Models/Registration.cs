@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EventRegistration.Attributes;
 
 
 namespace EventRegistration.Models
@@ -18,11 +19,11 @@ namespace EventRegistration.Models
         public int Id { get; set; }
 
         [DisplayName("Date registered")]
-        [Required, DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}"), DataType(DataType.Date)]
-        //[Range(typeof(DateTime), "01/01/2019", "06/30/2019",ConvertValueInInvariantCulture = true)]
+        [Required, DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [Range(typeof(DateTime), "01/01/2019", "06/30/2019", ErrorMessage = "Value for {0} must be between {1:d} and {2:d}")]
         public DateTime DateRegistered { get; set; }
 
-        [DisplayName("Additional request"),DataType(DataType.MultilineText)]
+        [MaxLength(100), DisplayName("Additional request"), DataType(DataType.MultilineText),]
         public string AdditionalRequest { get; set; }
 
         public int UserId { get; set; }

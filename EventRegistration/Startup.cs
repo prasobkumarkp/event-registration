@@ -1,4 +1,6 @@
-﻿using EventRegistration.Data;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using EventRegistration.Data;
 using EventRegistration.Models;
 using EventRegistration.Services;
 using EventRegistration.Services.Mocks;
@@ -6,6 +8,7 @@ using EventRegistration.Services.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,31 +35,36 @@ namespace EventRegistration
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<RequestLocalizationOptions>(options =>
+                {
+                    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-Au");
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<EventRegistrationDbContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddTransient<IRepository<Registration>, RegistrationRepository>();
-            //services.AddTransient<IRepository<Day>, DayRepository>();
-            //services.AddTransient<IRepository<Gender>, GenderRepository>();
+            services.AddTransient<IRepository<Registration>, RegistrationRepository>();
+            services.AddTransient<IRepository<Day>, DayRepository>();
+            services.AddTransient<IRepository<Gender>, GenderRepository>();
 
             // Mock Repository
-            services.AddSingleton<IRepository<Registration>, MockRegistrationRepository>();
-            services.AddSingleton<IRepository<Day>, MockDayRepository>();
-            services.AddSingleton<IRepository<Gender>, MockGenderRepository>();
+            //services.AddSingleton<IRepository<Registration>, MockRegistrationRepository>();
+            //services.AddSingleton<IRepository<Day>, MockDayRepository>();
+            //services.AddSingleton<IRepository<Gender>, MockGenderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            //{
-            //    var dbContext = serviceScope.ServiceProvider.GetRequiredService<EventRegistrationDbContext>();
-            //    var isCreated = dbContext.Database.EnsureCreated();
-            //}
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<EventRegistrationDbContext>();
+                var isCreated = dbContext.Database.EnsureCreated();
+            }
+
 
             if (env.IsDevelopment())
             {
